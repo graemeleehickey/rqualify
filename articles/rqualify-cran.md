@@ -135,7 +135,7 @@ if(any(results_sysinfo_clean == "> ")){
                                           version 
     "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026" 
                                          nodename 
-                                  "runnervmejwal" 
+                                  "runnervmlun5p" 
                                           machine 
                                          "x86_64" 
                                             login 
@@ -355,7 +355,7 @@ if(any(results_sessioninfo_clean == "> ")){
 
     R version 4.6.1 (2026-06-24)
     Platform: x86_64-pc-linux-gnu
-    Running under: Ubuntu 24.04.4 LTS
+    Running under: Ubuntu 24.04.5 LTS
 
     Matrix products: default
     BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 

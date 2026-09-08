@@ -1,0 +1,121 @@
+# rqualify
+
+## Installation
+
+You can install the package via CRAN:
+
+``` r
+
+install.packages("rqualify")
+```
+
+The package can also be installed from this Github repository using the
+following:
+
+``` r
+
+# If needed install.packages("remotes")
+remotes::install_github("Medtronic-Biostatistics/rqualify")
+```
+
+## Purpose
+
+The purpose of this package is to ease the R software validation steps
+required for regulatory submissions. The `rqualify` function automates
+the generation of a validation document that can be used to demonstrate
+that an R environment is suitable for use in a regulated setting.
+
+## R Software Qualification
+
+Once the `rqualify` package is installed, there are a few ways to
+execute the validation process. For instance, you can install Pandoc and
+TinyTeX as follows:
+
+``` r
+
+library(rqualify)
+
+# Install and activate Pandoc
+pandoc_install()
+pandoc_activate()
+
+# Install the TinyTeX bundle plus the grfext package
+install_tinytex(bundle="TinyTeX",
+                force=TRUE,
+                extra_packages="grfext")
+              
+rqualify(path_save     = tempdir(),
+         setup_tinytex = FALSE,
+         setup_pandoc  = FALSE)
+```
+
+Alternately, a more convenient approach to execute the entire validation
+process can be used, where the Pandoc and TinyTeX installation process
+are wrapped inside the function:
+
+``` r
+
+library(rqualify)
+rqualify(path_save = tempdir())
+```
+
+Another alternative is to use Quarto, especially if you want to execute
+the validation process from within RStudio:
+
+``` r
+
+library(rqualify)
+rqualify(path_save     = tempdir(),
+         setup_tinytex = FALSE,
+         setup_pandoc  = FALSE,
+         engine        = "quarto")
+```
+
+In any case, ensure that the `path_save` location does not already
+include a folder named `R-validation`. See
+[`?rqualify`](https://medtronic-biostatistics.github.io/rqualify/reference/rqualify.md)
+for more info.
+
+## Special Thanks
+
+We would like to thank [Marc Schwartz](https://github.com/marcschwartz/)
+for allowing us to modify
+[R-IQ-OQ](https://github.com/marcschwartz/R-IQ-OQ) into the RMarkdown
+file made available by this package. As the original code was released
+under the GNU GPL version 2 license, we are adhering to the licensing
+and releasing this package under GNU GPL version 2 as well.
+
+# Package index
+
+## All functions
+
+- [`rqualify()`](https://medtronic-biostatistics.github.io/rqualify/reference/rqualify.md)
+  : Run IQ-OQ on an installation of R software
+
+# Articles
+
+### All vignettes
+
+- [Background](https://medtronic-biostatistics.github.io/rqualify/articles/background.md):
+
+  Background.
+
+- [Qualification
+  Details](https://medtronic-biostatistics.github.io/rqualify/articles/details.md):
+
+  Qualification Details
+
+- [Introduction to the rqualify
+  Package](https://medtronic-biostatistics.github.io/rqualify/articles/rqualify-cran.md):
+
+  Introduction to the rqualify Package.
+
+- [Introduction to
+  rqualify](https://medtronic-biostatistics.github.io/rqualify/articles/rqualify.md):
+
+  Get started with rqualify.
+
+- [Package
+  Usage](https://medtronic-biostatistics.github.io/rqualify/articles/usage.md):
+
+  Package Usage

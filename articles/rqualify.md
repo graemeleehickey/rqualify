@@ -1,0 +1,64 @@
+# Introduction to rqualify
+
+The primary goal of rqualify is to ease the R software validation steps
+required for regulatory submissions. The `rqualify` function automates
+the generation of a validation document that can be used to demonstrate
+that an R environment is suitable for use in a regulated setting.
+
+Once the `rqualify` package is installed, executing the validation
+script is as simple as running the function:
+
+``` r
+
+library(rqualify)
+rqualify(path_save = tempdir())
+```
+
+Ensure the folder you specify does not already include a folder named
+`R-validation`. See
+[`?rqualify`](https://medtronic-biostatistics.github.io/rqualify/reference/rqualify.md)
+for more info.
+
+## How does rqualify work?
+
+The `rqualify` function performs the following steps:
+
+1.  Creates the folder tree `R-validation/IQ-OQ-TestOutput` at the
+    specified `path_save`.
+2.  Installs TinyTeX and necessary LaTeX packages (if
+    `setup_tinytex=TRUE`).
+3.  Installs Pandoc (if `setup_pandoc=TRUE`).
+4.  Copies `R-validation.Rmd` to the `R-validation` folder.
+5.  Executes the IQ-OQ by rendering `R-validation.Rmd` to
+    `R-validation.tex`.
+6.  Compiles `R-validation.tex` to `R-validation.pdf`.
+
+In case you are developing a process for user-level qualification, the
+file `R-validation.Rmd` located in the root directory of this package at
+`qualify_r/R-validation.Rmd` can be used as a template for your own
+validation document. Note, if viewing on Github, the `R-validation.Rmd`
+file is located at `inst/qualify_r/R-validation.Rmd`.
+
+Alternately, you can execute the validation proces via Quarto and Typst.
+In that instance, the following steps are performed:
+
+1.  Creates the folder tree `R-validation/IQ-OQ-TestOutput` at the
+    specified `path_save`.
+2.  Copies `R-validation.Qmd` to the `R-validation` folder.
+3.  Executes the IQ-OQ by rendering `R-validation.Qmd` via Quarto and
+    Typst to `R-validation.pdf`.
+
+## Tips for a Successful Qualification
+
+- Best practice is to Install and execute the qualification code on a
+  new and fresh installation of R, prior to installing additional
+  packages.
+- Install and validate on a new minor release of R, e.g., upgrading from
+  4.**4**.3 to 4.**5**.1; notice the bold numbers indicate the minor
+  releases.
+- If unwilling to install and validate on a new minor release of R,
+  e.g., upgrading from 4.**4**.1 to 4.**4**.2, the validation may
+  **fail**.
+- If running the validation a second time within the same `R-validation`
+  folder, remove or rename the `IQ-OQ-TestOutput` subfolder that was
+  created.
